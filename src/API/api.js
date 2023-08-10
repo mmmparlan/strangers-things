@@ -5,7 +5,7 @@ const cohortName = '2302-ACC-ET-WEB-PT';
 // Use the APIURL variable for fetch requests
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${cohortName}/`;
 
-const registerUser = async (user) => {
+export const registerUser = async (user) => {
     try {
         const response = await fetch(
             `${BASE_URL}/users/register`, {
@@ -29,7 +29,7 @@ const registerUser = async (user) => {
     }
 }
 
-const login = async (user) => {
+export const login = async (user) => {
     //user should be an object with username and password. required
     try {
         const response = await fetch(`${BASE_URL}/users/login`, {
@@ -52,7 +52,7 @@ const login = async (user) => {
     }
 }
 
-const fetchMyData = async (token) => {
+export const fetchMyData = async (token) => {
     try {
         const response = await fetch(`${BASE_URL}/users/me`, {
             headers: {
@@ -69,7 +69,7 @@ const fetchMyData = async (token) => {
     }
 }
 //optional, pass in a token to set isAuthor for their respected posts
-const fetchPosts = async (token) => {
+export const fetchPosts = async (token) => {
     try{
         const response = await fetch(`${BASE_URL}/posts`, {
             headers: {
@@ -87,7 +87,7 @@ const fetchPosts = async (token) => {
     }
 }
 
-const makePost = async (token,post) => {
+export const makePost = async (token,post) => {
     //post should be an object and is required along with a token
     try {
         const response = await fetch(`${BASE_URL}/posts`, {
@@ -113,7 +113,7 @@ const makePost = async (token,post) => {
     }
 }
 
-const updatePost = async(token,postId,post) => {
+export const updatePost = async(token,postId,post) => {
     try {
         const response = await fetch(`${BASE_URL}/posts/${postId}`, {
             method: 'PATCH',
@@ -137,7 +137,7 @@ const updatePost = async(token,postId,post) => {
     }
 }
 
-const deletePost = async (token,postId) => {
+export const deletePost = async (token,postId) => {
     try {
         const response = await fetch(`${BASE_URL}/posts/${postId}`, {
             method: 'DELETE',
@@ -154,7 +154,7 @@ const deletePost = async (token,postId) => {
     }
 }
 
-const postMessage = async (token,postId,message) => {
+export const postMessage = async (token,postId,message) => {
     try {
         const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
             method: "POST",

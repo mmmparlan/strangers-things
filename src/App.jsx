@@ -1,23 +1,26 @@
 import { useState } from 'react'
 import NavBar from './components/NavBar'
-import Home from './components/Home'
-import Post from './components/Post'
-import MyThings from './components/MyThings'
-import Login from './components/Login'
-
 import './App.css'
 
 function App() {
-  const [showHome,setShowHome] = useState(true);
-  const [showPost,setShowPost] = useState(false);
+
   const [showMyThings,setShowMyThings] = useState(false);
-  const [showLogin,setShowLogin] = useState(false);
-  const [token,setToken] = useState([""])
+  const [token,setToken] = useState(null)
+  const [allPost,setAllPost] =useState([""])
   const [postId,setPostId] = useState(null)
 
   return (
     <>
-
+    <NavBar 
+    showMyThings={showMyThings} 
+    setShowMyThings={setShowMyThings}
+    token={token} 
+    setToken={setToken}
+    postId={postId} 
+    setPostId={setPostId}
+    allPost={allPost}
+    setAllPost={setAllPost}
+    />
     </>
   )
 }
