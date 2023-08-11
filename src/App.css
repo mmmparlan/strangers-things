@@ -49,15 +49,56 @@
   background-color: rgb(42, 42, 33);
   font-size: 25px;
   height: auto;
-
-  
 }
 
 .viewBox{
   background-color: azure;
- 
+  border-radius: 15px;
+  border: 9px solid #8d9596;
+  place-items: center;
 }
 
 .mainContent{
   height: 1000px;
+}
+
+.postTable{
+  border-radius: 5px;
+  border: 5px solid #1d416e;
+  width: 95%;
+  margin: auto;
+  background-color: rgb(186, 220, 251);
+}
+/* .postTableView{
+  place-items: center;
+} */
+
+.descriptionCell{
+  width: 75%;
+  text-align: left;
+  font-weight: bold;
+}
+
+.priceCell{
+  width: 10%;
+  
+  font-weight: bold;
+}
+.willDeliverCell{
+  
+  font-weight: bold;
+}
+.sendMessageBtn{
+  text-align: center;
+}
+.signInForm{
+  margin:auto;
+  font-size: 20px;
+  
+}
+#username{
+  font-size: 20px;
+}
+#password{
+  font-size: 20px;
 }

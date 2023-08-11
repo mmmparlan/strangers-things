@@ -3,13 +3,28 @@ import Login from './Login'
 import MyThings from './MyThings'
 import Post from './Post'
 import {Routes,Route,Link} from 'react-router-dom'
-import {useState} from 'react'
+import {useState,useEffect} from 'react'
+import {fetchPosts} from '../API/api'
 
 export default function NavBar() {
-        //const [allPost,setAllPost] =useState(null)
-        const [showMyThings,setShowMyThings] = useState(false);
+        const [allPost,setAllPost] =useState([""]);
+        //const [showMyThings,setShowMyThings] = useState(false);
         const [token,setToken] = useState(null)
         const [postId,setPostId] = useState(null)
+
+        useEffect(() => {
+            async function fetchAllPosts(){
+            try {
+                const allPostObj = await fetchPosts(token);
+                setAllPost(allPostObj);
+                console.log("using useEffect to call API from api.js");
+                console.log(allPost);
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        fetchAllPosts()
+        },[]);
 
     return (
         <>
@@ -25,9 +40,9 @@ export default function NavBar() {
 
         <Routes className="mainContent">
           <Route path="/Home.jsx" element={<Home  />} />
-          <Route path="/Post.jsx" element={<Post   token={token} setToken={setToken} />} />
+          <Route path="/Post.jsx" element={<Post postId={postId} setPostId={setPostId} allPost={allPost} setAllPost={setAllPost} token={token} setToken={setToken} />} />
           <Route path="/MyThings.jsx" element={<MyThings  />} />
-          <Route path="/Login.jsx" element={<Login />} />
+          <Route path="/Login.jsx" element={<Login token={token} setToken={setToken} />} />
         </Routes>
         </div>
 

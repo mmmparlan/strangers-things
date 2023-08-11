@@ -2,31 +2,13 @@ import {fetchPosts} from '../API/api.js'
 import {useState,useEffect} from 'react'
 
 
-export default function Post({token}){
-    const [allPost,setAllPost] = useState(null)
+export default function Post({postId,setPostId,allPost,setAllPost,token}){
 
-    useEffect(() => {
-        async function fetchAllPosts(){
-        try {
-            const allPostObj = await fetchPosts(token);
-            setAllPost(allPostObj);
-            console.log("using useEffect to call API from api.js");
-            console.log(allPost);
-        } catch (err) {
-            console.error(err)
-        }
+    //this is the next part i need to work on. send a message onClick
+    async function handleClick(){
+        console.log("handleClick activiated")
     }
-    fetchAllPosts()
-    },[]);
-
-//    allPostObj = fetchPosts(token);
-//    setAllPost(allPostObj)
-    console.log('outside useEffect)');
     console.log(allPost.data.posts);
-    const justPosts = allPost.data.posts;
-    console.log('outside useEffect');
-    console.log(justPosts)
-//    console.log(allPost.data);
 
     return (
         <>
@@ -35,25 +17,32 @@ export default function Post({token}){
 
         {allPost.data.posts.map((post) => {
                     return (
-                    <table>
-                    <thead>
+                    <div className='postTableDiv'>
+                    <table className='postTable'>
+                    <thead className='postTitle'>
                         <tr key="tHead">
-                        <th colSpan="3">Post: {post.title}</th>
+                        <th colSpan="4">Post: {post.title}</th>
                         </tr>
                     </thead>
                     <tbody>
                     <tr key="tbody">
-                    <td key='postDescription'>Description</td>
-                    <td key='postDeliver'>Will Deliver</td>
-                    <td key='postPrice'>Price</td>
+                    <td className="descriptionCell" key='postDescription'>Description:</td>
+                    <td className="willDeliverCell" key='postDeliver'>Will Deliver</td>
+                    <td className="priceCell" key='postPrice'>Price</td>
+                    <td className="sendMessage" key='sendMessage'>Interested?</td>
                     </tr>
                     <tr key={post._id}>
-                    <td key={post.title}>{post.title}</td>
                     <td key={post.description}>{post.description}</td>
+                    <td key={post.willDeliver}>{`${post.willDeliver}`}</td>
                     <td key={post.price}>{post.price}</td>
+                    <td className='sendMessBtn' rowSpan="2">
+                        <button onClick={handleClick}>Send Message!</button>
+                    </td>
                     </tr>
                     </tbody>
                     </table>
+                    <br></br>
+                    </div>
                     )
                 })}
         </div>
