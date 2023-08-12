@@ -1,5 +1,6 @@
 import {fetchPosts} from '../API/api.js'
 import {useState,useEffect} from 'react'
+import React from 'react'
 
 
 export default function Post({postId,setPostId,allPost,setAllPost,token}){
@@ -15,7 +16,7 @@ export default function Post({postId,setPostId,allPost,setAllPost,token}){
         <h3>View All Our Posts Here. We Hope You Find That Thing You Were Looking For!</h3>
         <div>
 
-        {allPost.data.posts.map((post) => {
+        {React.Children.toArray (allPost.data.posts.map((post) => {
                     return (
                     <div className='postTableDiv'>
                     <table className='postTable'>
@@ -44,7 +45,7 @@ export default function Post({postId,setPostId,allPost,setAllPost,token}){
                     <br></br>
                     </div>
                     )
-                })}
+                }))}
         </div>
         </>
     )

@@ -11,6 +11,8 @@ export default function NavBar() {
         //const [showMyThings,setShowMyThings] = useState(false);
         const [token,setToken] = useState(null)
         const [postId,setPostId] = useState(null)
+        const [userLoggedIn,setUserLoggedIn] = useState(false)
+        const [allMyThingsObj,setAllMyThingsObj] = useState(null);
 
         useEffect(() => {
             async function fetchAllPosts(){
@@ -41,8 +43,8 @@ export default function NavBar() {
         <Routes className="mainContent">
           <Route path="/Home.jsx" element={<Home  />} />
           <Route path="/Post.jsx" element={<Post postId={postId} setPostId={setPostId} allPost={allPost} setAllPost={setAllPost} token={token} setToken={setToken} />} />
-          <Route path="/MyThings.jsx" element={<MyThings  />} />
-          <Route path="/Login.jsx" element={<Login token={token} setToken={setToken} />} />
+          <Route path="/MyThings.jsx" element={<MyThings allMyThingsObj={allMyThingsObj} setAllMyThingsObj={setAllMyThingsObj} token={token}/>} />
+          <Route path="/Login.jsx" element={<Login userLoggedIn={userLoggedIn} setUserLoggedIn={setUserLoggedIn} token={token} setToken={setToken} />} />
         </Routes>
         </div>
 

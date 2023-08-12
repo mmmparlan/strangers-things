@@ -1,7 +1,31 @@
+import {useEffect,useState} from 'react'
+import { fetchMyData } from '../API/api'
 
 
+export default function MyThings({token,allMyThingsObj,setAllMyThingsObj}){
 
-export default function MyThings(){
+    
+
+    useEffect(() => {
+        if (!token){return;}
+        if (allMyThingsObj){return;}
+        async function grabMyThings(){
+
+            try {
+                const result = await fetchMyData(token)
+                setAllMyThingsObj(result)
+                console.log(allMyThingsObj)
+                console.log('setAllMyThingsObj set to result')
+                
+
+                
+            } catch (error) {
+                console.error(error)
+            }
+
+        }
+        grabMyThings();
+    },[setAllMyThingsObj, allMyThingsObj]);
 
     return(
         <>
