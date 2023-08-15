@@ -3,48 +3,34 @@ import {useEffect, useState} from 'react'
 
 
 export default function Login({token,setToken}){
-    const [username,setUsername] = useState(null)
-    const [password,setPassword] = useState(null)
-    const [usrLogin,setUsrLogin] = useState(null) 
+    const [username,setUsername] = useState("")
+    const [password,setPassword] = useState("")
+    const [usrLogin,setUsrLogin] = useState("")
+    const [userLoggedIn, setUserLoggedIn] = useState(false);
     const [usrLoggedIn,setUsrLoggedIn] = useState(false)
 
     useEffect(() => {
+        if (!usrLogin || userLoggedIn) { return; }
+
         async function registerNewUser(){
             try {
-            const response = await registerUser(usrLogin);
-            const result = await response.json();
-            console.log('1 waiting for registering user');
-            console.log(result);
-                console.log("2");
-            await setToken(result.token);
-            console.log(token);
-            console.log("3");
-                if (token.success ){
-                    console.log("77")
-                    console.log(token.success)
-                }
+                const response = await registerUser(usrLogin);
+                const result = response;
 
+                await setToken(result.data.token);
+                setUserLoggedIn(true);
             } catch (err) {
                 console.error(err)
             }
         }
         registerNewUser();
-
-        //console.log(token.success);
-    },);
+    });
     
     function handleSubmit(event){
         event.preventDefault();
-        console.log('under event prevent')
         const usrObj = {username:`${username}` , password:`${password}` };
         setUsrLogin(usrObj);
-        console.log("handleSubmit activated from handleSubmit")
-        console.log(username);
-        console.log(password);
-        console.log(usrObj);
-        console.log(usrLogin);
     }
-
 
     return (
         <>
