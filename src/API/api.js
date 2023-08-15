@@ -1,9 +1,7 @@
 
-
-
 const cohortName = '2302-ACC-ET-WEB-PT';
 // Use the APIURL variable for fetch requests
-const BASE_URL = `https://strangers-things.herokuapp.com/api/${cohortName}/`;
+const BASE_URL = `https://strangers-things.herokuapp.com/api/${cohortName}`;
 
 export const registerUser = async (user) => {
     try {
